@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitLook - Accueil</title>
+    <title>FitLook - Nous trouver</title>
     <link rel="stylesheet" href="style.css">
     <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -328,76 +328,49 @@ footer p { font-size: 12px; margin-top: 6px; }
     <header>
         <div class="logo">Fit<span>Look</span></div>
         <nav><ul>
-                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="index.html">Accueil</a></li>
                 <li><a href="apropos.html">À propos</a></li>
                 <li><a href="produits.html">Produits/Services</a></li>
                 <li><a href="equipe.html">Équipe</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="nous-trouver.html">Nous trouver</a></li>
+                <li><a href="nous-trouver.html" class="active">Nous trouver</a></li>
         </ul></nav>
     </header>
 
-    <section class="hero">
-        <h1>Habille-toi <span>intelligemment</span></h1>
-        <p>Chaque matin, FitLook te propose des tenues adaptées à la météo, aux tendances et à ta garde-robe.</p>
+    <section class="page-header">
+        <h1>Nous <span class="accent">trouver</span></h1>
+        <p>Nos coordonnées et notre localisation.</p>
     </section>
 
-    <section class="presentation">
-        <h2>Qui sommes-nous ?</h2>
-        <p>
-            <strong>FitLook</strong> est une startup qui développe une application mobile innovante.
-            Notre app te suggère chaque jour des idées de tenues en fonction de la
-            <span class="accent">météo du jour</span>, des <span class="accent">tendances mode</span>
-            et des <span class="accent">vêtements que tu as déjà chez toi</span> (pas au sale !).
-            Tu peux aussi découvrir les looks de tes influenceurs préférés et acheter les mêmes pièces directement depuis l'app.
-        </p>
-    </section>
-
-    <section class="video-section">
-        <h2>Découvrez FitLook en vidéo</h2>
-        <p>Notre vidéo de présentation</p>
-        <div class="video-container">
-            <!-- Pour mettre la vraie vidéo remplacer ce div par :
-                 <iframe src="https://www.youtube.com/embed/VOTRE_ID" allowfullscreen></iframe> -->
-            <div class="video-placeholder">
-                <span class="play-icon">&#9654;</span>
-                Vidéo de présentation à venir
-            </div>
+    <section class="coordonnees">
+        <h2>📍 Nos <span class="accent">coordonnées</span></h2>
+        <div class="coord-item">
+            <span class="coord-icon">🏢</span>
+            <span><strong>Adresse :</strong> 123 Rue de l'Innovation, 75013 Paris</span>
+        </div>
+        <div class="coord-item">
+            <span class="coord-icon">📧</span>
+            <span><strong>Email :</strong> contact@fitlook.fr</span>
+        </div>
+        <div class="coord-item">
+            <span class="coord-icon">📞</span>
+            <span><strong>Téléphone :</strong> +33 1 23 45 67 89</span>
+        </div>
+        <div class="coord-item">
+            <span class="coord-icon">🕐</span>
+            <span><strong>Horaires :</strong> Lundi — Vendredi, 9h00 — 18h00</span>
+        </div>
+        <div class="coord-item">
+            <span class="coord-icon">📱</span>
+            <span><strong>Réseaux :</strong> @fitlook_app sur Instagram et TikTok</span>
         </div>
     </section>
 
-    <section class="news-section">
-        <h2>Fil d'actualités</h2>
-        <ul class="news-list">
-            <li class="news-item">
-                <div class="news-date">25 Avr 2026</div>
-                <div class="news-content">
-                    <h3>Lancement de la version bêta</h3>
-                    <p>Notre application est disponible en version bêta ! Les premiers testeurs peuvent s'inscrire et essayer les suggestions de tenues.</p>
-                </div>
-            </li>
-            <li class="news-item">
-                <div class="news-date">18 Avr 2026</div>
-                <div class="news-content">
-                    <h3>Partenariat avec 3 marques françaises</h3>
-                    <p>FitLook signe ses premiers partenariats avec des marques de prêt-à-porter pour enrichir notre marketplace influenceurs.</p>
-                </div>
-            </li>
-            <li class="news-item">
-                <div class="news-date">05 Avr 2026</div>
-                <div class="news-content">
-                    <h3>FitLook présenté au concours startups</h3>
-                    <p>Notre équipe a présenté le projet devant un jury d'entrepreneurs. Retour très positif sur le concept !</p>
-                </div>
-            </li>
-            <li class="news-item">
-                <div class="news-date">20 Mar 2026</div>
-                <div class="news-content">
-                    <h3>L'algorithme de suggestions est prêt</h3>
-                    <p>Après plusieurs mois de développement, notre algorithme basé sur la météo et les tendances est opérationnel.</p>
-                </div>
-            </li>
-        </ul>
+    <section class="map-section">
+        <h2>🗺️ Notre <span class="accent">localisation</span></h2>
+        <div class="map-container">
+            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=2.3400%2C48.8250%2C2.3700%2C48.8400&amp;layer=mapnik&amp;marker=48.8322%2C2.3561" allowfullscreen></iframe>
+        </div>
     </section>
     <footer>
         <div class="footer-brand">Fit<span>Look</span></div>
@@ -411,6 +384,6 @@ footer p { font-size: 12px; margin-top: 6px; }
             <a href="nous-trouver.html">Nous trouver</a>
         </div>
     </footer>
-    <script src="index.js"></script>
+    <script src="nous-trouver.js"></script>
 </body>
 </html>

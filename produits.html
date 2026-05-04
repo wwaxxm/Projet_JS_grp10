@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitLook - Accueil</title>
+    <title>FitLook - Produits & Services</title>
     <link rel="stylesheet" href="style.css">
     <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -328,76 +328,89 @@ footer p { font-size: 12px; margin-top: 6px; }
     <header>
         <div class="logo">Fit<span>Look</span></div>
         <nav><ul>
-                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="index.html">Accueil</a></li>
                 <li><a href="apropos.html">À propos</a></li>
-                <li><a href="produits.html">Produits/Services</a></li>
+                <li><a href="produits.html" class="active">Produits/Services</a></li>
                 <li><a href="equipe.html">Équipe</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="nous-trouver.html">Nous trouver</a></li>
         </ul></nav>
     </header>
 
-    <section class="hero">
-        <h1>Habille-toi <span>intelligemment</span></h1>
-        <p>Chaque matin, FitLook te propose des tenues adaptées à la météo, aux tendances et à ta garde-robe.</p>
+    <section class="page-header">
+        <h1>Nos <span class="accent">Produits &amp; Services</span></h1>
+        <p>Tout ce que FitLook propose à ses utilisateurs.</p>
     </section>
 
-    <section class="presentation">
-        <h2>Qui sommes-nous ?</h2>
-        <p>
-            <strong>FitLook</strong> est une startup qui développe une application mobile innovante.
-            Notre app te suggère chaque jour des idées de tenues en fonction de la
-            <span class="accent">météo du jour</span>, des <span class="accent">tendances mode</span>
-            et des <span class="accent">vêtements que tu as déjà chez toi</span> (pas au sale !).
-            Tu peux aussi découvrir les looks de tes influenceurs préférés et acheter les mêmes pièces directement depuis l'app.
-        </p>
-    </section>
-
-    <section class="video-section">
-        <h2>Découvrez FitLook en vidéo</h2>
-        <p>Notre vidéo de présentation</p>
-        <div class="video-container">
-            <!-- Pour mettre la vraie vidéo remplacer ce div par :
-                 <iframe src="https://www.youtube.com/embed/VOTRE_ID" allowfullscreen></iframe> -->
-            <div class="video-placeholder">
-                <span class="play-icon">&#9654;</span>
-                Vidéo de présentation à venir
+    <section class="section">
+        <h2 class="section-title">Ce que FitLook <span class="accent">t'offre</span></h2>
+        <p class="section-subtitle">Une application, plein de services pour ton style au quotidien.</p>
+        <div class="services-list">
+            <div class="service-item">
+                <div class="service-icon">👗</div>
+                <div class="service-info">
+                    <h3>Suggestions de tenues quotidiennes</h3>
+                    <p>Chaque matin, des propositions de looks basés sur la météo, les tendances et tes vêtements disponibles.</p>
+                    <span class="service-tag">Gratuit</span>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🗄️</div>
+                <div class="service-info">
+                    <h3>Gestion de garde-robe numérique</h3>
+                    <p>Photographie tes vêtements pour créer ta garde-robe virtuelle. Marque chaque pièce "disponible" ou "au sale".</p>
+                    <span class="service-tag">Gratuit</span>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🌦️</div>
+                <div class="service-info">
+                    <h3>Adaptation météo en temps réel</h3>
+                    <p>L'app consulte les prévisions de ta ville et adapte les suggestions. Pluie ? Imperméable. Canicule ? Vêtements légers.</p>
+                    <span class="service-tag">Gratuit</span>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🛍️</div>
+                <div class="service-info">
+                    <h3>Marketplace influenceurs</h3>
+                    <p>Retrouve les looks de tes influenceurs et achète les mêmes pièces directement dans l'application.</p>
+                    <span class="service-tag">Commission sur vente</span>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">📸</div>
+                <div class="service-info">
+                    <h3>Reconnaissance de look par photo</h3>
+                    <p>Screenshot un look, importe-le dans FitLook, et notre techno identifie les vêtements similaires à acheter.</p>
+                    <span class="service-tag">Gratuit</span>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">📅</div>
+                <div class="service-info">
+                    <h3>Planning de tenues hebdomadaire</h3>
+                    <p>Planifie tes tenues pour toute la semaine à l'avance. Idéal pour tout organiser le dimanche soir.</p>
+                    <span class="service-tag">Premium — 4,99€/mois</span>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🔔</div>
+                <div class="service-info">
+                    <h3>Notifications matinales</h3>
+                    <p>Reçois une notification push chaque matin avec ta suggestion de tenue du jour.</p>
+                    <span class="service-tag">Gratuit</span>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">❤️</div>
+                <div class="service-info">
+                    <h3>Favoris et historique</h3>
+                    <p>Enregistre tes combinaisons préférées et consulte l'historique de ce que tu as porté.</p>
+                    <span class="service-tag">Gratuit</span>
+                </div>
             </div>
         </div>
-    </section>
-
-    <section class="news-section">
-        <h2>Fil d'actualités</h2>
-        <ul class="news-list">
-            <li class="news-item">
-                <div class="news-date">25 Avr 2026</div>
-                <div class="news-content">
-                    <h3>Lancement de la version bêta</h3>
-                    <p>Notre application est disponible en version bêta ! Les premiers testeurs peuvent s'inscrire et essayer les suggestions de tenues.</p>
-                </div>
-            </li>
-            <li class="news-item">
-                <div class="news-date">18 Avr 2026</div>
-                <div class="news-content">
-                    <h3>Partenariat avec 3 marques françaises</h3>
-                    <p>FitLook signe ses premiers partenariats avec des marques de prêt-à-porter pour enrichir notre marketplace influenceurs.</p>
-                </div>
-            </li>
-            <li class="news-item">
-                <div class="news-date">05 Avr 2026</div>
-                <div class="news-content">
-                    <h3>FitLook présenté au concours startups</h3>
-                    <p>Notre équipe a présenté le projet devant un jury d'entrepreneurs. Retour très positif sur le concept !</p>
-                </div>
-            </li>
-            <li class="news-item">
-                <div class="news-date">20 Mar 2026</div>
-                <div class="news-content">
-                    <h3>L'algorithme de suggestions est prêt</h3>
-                    <p>Après plusieurs mois de développement, notre algorithme basé sur la météo et les tendances est opérationnel.</p>
-                </div>
-            </li>
-        </ul>
     </section>
     <footer>
         <div class="footer-brand">Fit<span>Look</span></div>
@@ -411,6 +424,6 @@ footer p { font-size: 12px; margin-top: 6px; }
             <a href="nous-trouver.html">Nous trouver</a>
         </div>
     </footer>
-    <script src="index.js"></script>
+    <script src="produits.js"></script>
 </body>
 </html>
