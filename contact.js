@@ -8,7 +8,7 @@ document.addEventListener("copy", function () {
     console.warn("Article L122-4 du Code de la Propriété Intellectuelle.");
 });
 
-/* 2. ERREURS DE SAISIE - vérification poussée pour le formulaire contact */
+/* 2. ERREURS DE SAISIE */
 function verifierSaisie(champ) {
     var valeur = champ.value.trim();
     var nom = champ.name || champ.id || "champ inconnu";
@@ -19,19 +19,30 @@ function verifierSaisie(champ) {
     }
     if (champ.type === "email" && valeur !== "") {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valeur)) {
-            console.error("❌ [Contact] Champ '" + nom + "' : email invalide → " + valeur);
+            console.error("❌ [Contact] Email invalide → " + valeur);
             return false;
         }
     }
+    /* Nom complet : pas de chiffres */
+    if (nom === "nom_complet" && valeur !== "") {
+        if (/[0-9]/.test(valeur)) {
+            console.error("❌ [Contact] Champ 'nom complet' : ne doit pas contenir de chiffres → '" + valeur + "'");
+            return false;
+        }
+        if (valeur.length < 3) {
+            console.error("❌ [Contact] Champ 'nom complet' trop court (" + valeur.length + " car, min 3).");
+            return false;
+        }
+        console.log("✅ [Contact] Nom complet valide : '" + valeur + "'");
+    }
     if (nom === "message" && valeur.length < 10) {
-        console.error("❌ [Contact] Champ 'message' trop court : " + valeur.length + " caractères (min 10).");
+        console.error("❌ [Contact] Message trop court : " + valeur.length + " caractères (min 10).");
         return false;
     }
     if (champ.tagName === "SELECT" && valeur === "") {
-        console.error("❌ [Contact] Champ '" + nom + "' : aucun sujet sélectionné.");
+        console.error("❌ [Contact] Aucun sujet sélectionné.");
         return false;
     }
-    console.log("✅ [Contact] Champ '" + nom + "' valide.");
     return true;
 }
 
@@ -42,13 +53,11 @@ if (formContact) {
         var champs = this.querySelectorAll("input, textarea, select");
         var ok = true;
         console.log("--- Vérification formulaire Contact ---");
-        for (var j = 0; j < champs.length; j++) {
-            if (!verifierSaisie(champs[j])) ok = false;
-        }
+        champs.forEach(function (c) { if (!verifierSaisie(c)) ok = false; });
         if (!ok) {
             console.error("🚫 Soumission bloquée - corrigez les erreurs ci-dessus.");
         } else {
-            console.log("✅ Formulaire valide - envoi en cours...");
+            console.log("✅ Formulaire Contact valide - envoi en cours...");
         }
     });
 }
@@ -61,7 +70,7 @@ function verifierQuiz() {
     for (var i = 1; i <= 4; i++) {
         var rep = document.querySelector('input[name="q' + i + '"]:checked');
         if (!rep) {
-            console.warn("⚠️ Question " + i + " : pas de réponse.");
+            console.warn("⚠️ Question " + i + " : pas de réponse sélectionnée.");
         } else if (rep.value === bonnesReponses["q" + i]) {
             score++;
             console.log("✅ Question " + i + " : bonne réponse !");
@@ -69,24 +78,17 @@ function verifierQuiz() {
             console.log("❌ Question " + i + " : mauvaise réponse.");
         }
     }
-    console.log("Score : " + score + "/4");
+    console.log("Score final : " + score + "/4");
     var res = document.getElementById("quiz-result");
     res.style.display = "block";
     if (score === 4) {
-        res.style.backgroundColor = "#1a3a2e";
-        res.style.color = "#4caf50";
-        res.style.border = "1px solid #4caf50";
+        res.style.backgroundColor = "#1a3a2e"; res.style.color = "#4caf50"; res.style.border = "1px solid #4caf50";
         res.textContent = "Bravo ! " + score + "/4 — Tu connais FitLook par cœur !";
     } else if (score >= 2) {
-        res.style.backgroundColor = "#2a2a0e";
-        res.style.color = "#ffc107";
-        res.style.border = "1px solid #ffc107";
+        res.style.backgroundColor = "#2a2a0e"; res.style.color = "#ffc107"; res.style.border = "1px solid #ffc107";
         res.textContent = "Pas mal ! " + score + "/4 — Tu connais bien FitLook !";
     } else {
-        res.style.backgroundColor = "#2a0e0e";
-        res.style.color = "#e94560";
-        res.style.border = "1px solid #e94560";
+        res.style.backgroundColor = "#2a0e0e"; res.style.color = "#e94560"; res.style.border = "1px solid #e94560";
         res.textContent = score + "/4 — Relis notre site pour en apprendre plus !";
     }
 }
-console.log("📄 contact.js chargé");

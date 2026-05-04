@@ -1,4 +1,4 @@
-/* index.js - Page Accueil */
+/* index.js */
 
 /* 1. ANTI-PLAGIAT */
 document.addEventListener("copy", function () {
@@ -13,27 +13,26 @@ function verifierSaisie(champ) {
     var valeur = champ.value.trim();
     var nom = champ.name || champ.id || "champ inconnu";
     if (valeur === "" && champ.hasAttribute("required")) {
-        console.error("❌ [Accueil] Champ '" + nom + "' vide et obligatoire.");
+        console.error("❌ [index] Champ '" + nom + "' : obligatoire mais vide.");
         return false;
     }
     if (champ.type === "email" && valeur !== "") {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valeur)) {
-            console.error("❌ [Accueil] Email invalide : " + valeur);
+            console.error("❌ [index] Champ '" + nom + "' : email invalide → " + valeur);
             return false;
         }
     }
     return true;
 }
 
-var forms = document.querySelectorAll("form");
-for (var i = 0; i < forms.length; i++) {
-    forms[i].addEventListener("submit", function (e) {
+document.querySelectorAll("form").forEach(function (form) {
+    form.addEventListener("submit", function (e) {
         var champs = this.querySelectorAll("input, textarea, select");
         var ok = true;
-        for (var j = 0; j < champs.length; j++) {
-            if (!verifierSaisie(champs[j])) ok = false;
+        champs.forEach(function (c) { if (!verifierSaisie(c)) ok = false; });
+        if (!ok) {
+            e.preventDefault();
+            console.error("🚫 [index] Soumission bloquée - erreurs de saisie.");
         }
-        if (!ok) console.error("🚫 [Accueil] Soumission bloquée - erreurs de saisie.");
     });
-}
-console.log("📄 index.js chargé");
+});
