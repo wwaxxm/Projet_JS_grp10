@@ -3,134 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitLook - L'Équipe</title>
+    <title>FitLook - Équipe</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a2e;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; }
+
+/* --- HEADER --- */
+header {
+    background-color: #0f0f23;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid #e94560;
+}
+.logo { font-size: 26px; font-weight: bold; color: #e94560; letter-spacing: 2px; }
+.logo span { color: white; }
+nav ul { list-style: none; display: flex; gap: 20px; }
+nav ul li a {
+    color: #aaa;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+nav ul li a:hover, nav ul li a.active {
+    background-color: #e94560;
+    color: white;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #0f0f23;
+    color: #666;
+    text-align: center;
+    padding: 35px 20px;
+    border-top: 2px solid #e94560;
+}
+.footer-brand { font-size: 22px; font-weight: bold; color: #e94560; margin-bottom: 8px; }
+.footer-brand span { color: white; }
+footer p { font-size: 12px; margin-top: 6px; }
+.footer-links { list-style: none; margin-top: 12px; display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+.footer-links a { color: #666; font-size: 12px; transition: color 0.3s; }
+.footer-links a:hover { color: #e94560; }
+
+/* --- HERO / BANNIERE --- */
+.hero {
+    background-color: #16213e;
+    color: white;
+    text-align: center;
+    padding: 90px 20px;
+    border-bottom: 3px solid #e94560;
+}
+.hero h1 { font-size: 46px; margin-bottom: 18px; }
+.hero h1 span { color: #e94560; }
+.hero p { font-size: 17px; color: #aaa; max-width: 620px; margin: 0 auto; }
+
+.accent { color: #e94560; }
+
+/* --- PRESENTATION --- */
+.presentation {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 55px 20px;
+    text-align: center;
+    background-color: #1a1a2e;
+}
+.presentation h2 { font-size: 28px; margin-bottom: 14px; color: white; }
+.presentation p { font-size: 15px; color: #aaa; line-height: 1.8; }
+
+/* --- VIDEO --- */
+.video-section {
+    background-color: #16213e;
+    padding: 50px 20px;
+    text-align: center;
+    border-top: 1px solid #2a2a4a;
+    border-bottom: 1px solid #2a2a4a;
+}
+.video-section h2 { font-size: 26px; margin-bottom: 8px; color: white; }
+.video-section > p { font-size: 14px; color: #888; margin-bottom: 22px; }
+.video-container {
+    max-width: 750px;
+    margin: 0 auto;
+    background-color: #0f0f23;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #444;
+}
+.video-container iframe { width: 100%; height: 100%; border: none; }
+.video-placeholder { color: #555; font-size: 15px; text-align: center; }
+.video-placeholder .play-icon { font-size: 60px; display: block; margin-bottom: 12px; color: #e94560; }
+
+/* --- NEWS --- */
+.news-section { max-width: 850px; margin: 0 auto; padding: 55px 20px; }
+.news-section h2 { text-align: center; font-size: 26px; margin-bottom: 28px; color: white; }
+.news-list { list-style: none; }
+.news-item {
+    display: flex;
+    gap: 18px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background-color: #16213e;
+    border-radius: 10px;
+    border-left: 4px solid #e94560;
+    align-items: flex-start;
+    transition: transform 0.2s;
+}
+.news-item:hover { transform: translateX(5px); }
+.news-date {
+    background-color: #e94560;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+    min-width: 90px;
+    text-align: center;
+}
+.news-content h3 { font-size: 14px; color: white; margin-bottom: 4px; }
+.news-content p { font-size: 12px; color: #888; }
+
+/* --- PAGE HEADER --- */
+.page-header {
+    background-color: #16213e;
+    color: white;
+    text-align: center;
+    padding: 55px 20px;
+    border-bottom: 3px solid #e94560;
+}
+.page-header h1 { font-size: 36px; margin-bottom: 8px; }
+.page-header p { color: #aaa; font-size: 15px; }
+
+/* --- CONTENT BLOCK --- */
+.content-block { max-width: 850px; margin: 0 auto; padding: 50px 20px; }
+.content-block h2 { font-size: 24px; margin-bottom: 14px; color: white; }
+.content-block p { font-size: 14px; color: #aaa; margin-bottom: 16px; line-height: 1.8; }
+.content-block ul { list-style: disc; margin-left: 25px; margin-bottom: 18px; }
+.content-block ul li { font-size: 14px; color: #aaa; margin-bottom: 8px; line-height: 1.7; }
+
+/* --- SECTIONS --- */
+.section { padding: 55px 40px; max-width: 1100px; margin: 0 auto; }
+.section-dark { background-color: #16213e; padding: 55px 40px; border-top: 1px solid #2a2a4a; border-bottom: 1px solid #2a2a4a; }
+.section-grey { background-color: #16213e; padding: 55px 40px; border-top: 1px solid #2a2a4a; }
+
+.section-title { text-align: center; font-size: 28px; margin-bottom: 10px; color: white; }
+.section-subtitle { text-align: center; font-size: 14px; color: #888; margin-bottom: 35px; }
+
+/* --- CARDS --- */
+.cards-container { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; max-width: 1100px; margin: 0 auto; }
+.card {
+    background-color: #0f0f23;
+    border-radius: 12px;
+    padding: 30px 22px;
+    width: 300px;
+    text-align: center;
+    border: 1px solid #2a2a4a;
+    transition: transform 0.3s, border-color 0.3s;
+}
+.card:hover { transform: translateY(-6px); border-color: #e94560; }
+.card-icon { font-size: 40px; margin-bottom: 14px; }
+.card h3 { font-size: 17px; margin-bottom: 10px; color: #e94560; }
+.card p { font-size: 13px; color: #888; line-height: 1.6; }
+
+/* --- SERVICES --- */
+.services-list { max-width: 850px; margin: 0 auto; }
+.service-item {
+    display: flex;
+    gap: 20px;
+    padding: 22px;
+    margin-bottom: 14px;
+    background-color: #16213e;
+    border-radius: 10px;
+    border-left: 4px solid #e94560;
+    align-items: flex-start;
+    transition: transform 0.2s;
+}
+.service-item:hover { transform: translateY(-3px); }
+.service-icon {
+    font-size: 28px;
+    width: 55px;
+    height: 55px;
+    background-color: #0f0f23;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #e94560;
+}
+.service-info h3 { font-size: 16px; margin-bottom: 5px; color: white; }
+.service-info p { font-size: 13px; color: #888; line-height: 1.6; }
+.service-tag {
+    display: inline-block;
+    background-color: #e94560;
+    color: white;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 7px;
+}
+
+/* --- EQUIPE --- */
+.team-card {
+    background-color: #0f0f23;
+    border-radius: 12px;
+    padding: 28px;
+    width: 240px;
+    text-align: center;
+    border: 1px solid #2a2a4a;
+    transition: transform 0.3s, border-color 0.3s;
+}
+.team-card:hover { transform: translateY(-5px); border-color: #e94560; }
+.team-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: #16213e;
+    border: 3px dashed #444;
+    margin: 0 auto 14px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 11px;
+    overflow: hidden;
+}
+.team-photo img { width: 100%; height: 100%; object-fit: cover; }
+.team-card h3 { font-size: 16px; margin-bottom: 4px; color: white; }
+.team-card .role { font-size: 12px; color: #e94560; font-weight: bold; margin-bottom: 8px; }
+.team-card p { font-size: 12px; color: #888; }
+
+/* --- FORM --- */
+.form-container {
+    max-width: 550px;
+    margin: 0 auto;
+    background-color: #16213e;
+    padding: 35px;
+    border-radius: 12px;
+    border: 1px solid #2a2a4a;
+}
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; margin-bottom: 7px; font-weight: bold; font-size: 13px; color: #ccc; }
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #2a2a4a;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    background-color: #0f0f23;
+    color: white;
+    transition: border-color 0.3s;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-color: #e94560; outline: none; }
+.form-group textarea { height: 120px; resize: vertical; }
+.form-group select option { background-color: #0f0f23; color: white; }
+.form-btn {
+    background-color: #e94560;
+    color: white;
+    border: none;
+    padding: 13px 38px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto;
+}
+.form-btn:hover { background-color: #c73652; }
+
+/* --- QUIZ --- */
+.game-section { max-width: 600px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+.game-section h2 { font-size: 24px; margin-bottom: 10px; color: white; }
+.game-section > p { font-size: 13px; color: #888; margin-bottom: 22px; }
+.quiz-question {
+    background-color: #0f0f23;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #2a2a4a;
+    text-align: left;
+}
+.quiz-question h3 { font-size: 14px; color: #ccc; margin-bottom: 12px; }
+.quiz-question label { display: block; padding: 7px 12px; margin-bottom: 4px; border-radius: 6px; font-size: 13px; color: #aaa; cursor: pointer; transition: background-color 0.2s; }
+.quiz-question label:hover { background-color: #16213e; color: white; }
+.quiz-question input[type="radio"] { margin-right: 8px; accent-color: #e94560; }
+#quiz-result { margin-top: 16px; padding: 15px; border-radius: 8px; font-size: 14px; font-weight: bold; display: none; }
+
+/* --- NOUS TROUVER --- */
+.coordonnees { max-width: 600px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+.coordonnees h2 { font-size: 26px; margin-bottom: 20px; color: white; }
+.coord-item { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 12px; font-size: 14px; color: #aaa; }
+.coord-icon { font-size: 22px; }
+.map-section { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+.map-section h2 { text-align: center; font-size: 26px; margin-bottom: 22px; color: white; }
+.map-container { border-radius: 12px; overflow: hidden; border: 2px solid #2a2a4a; }
+.map-container iframe { width: 100%; height: 420px; border: none; }
+</style>
 </head>
 <body>
-
-    <!-- ===== HEADER ===== -->
     <header>
         <div class="logo">Fit<span>Look</span></div>
-        <nav>
-            <ul>
+        <nav><ul>
                 <li><a href="index.html">Accueil</a></li>
-                <li><a href="concept.html">Concept</a></li>
-                <li><a href="fonctionnalites.html">Fonctionnalités</a></li>
-                <li><a href="business.html">Business Model</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+                <li><a href="produits.html">Produits/Services</a></li>
                 <li><a href="equipe.html" class="active">Équipe</a></li>
                 <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+                <li><a href="nous-trouver.html">Nous trouver</a></li>
+        </ul></nav>
     </header>
 
-    <!-- ===== PAGE HEADER ===== -->
     <section class="page-header">
         <h1>Notre <span class="accent">Équipe</span></h1>
-        <p>Les personnes derrière le projet FitLook.</p>
+        <p>Les visages derrière le projet FitLook.</p>
     </section>
 
-    <!-- ===== PRESENTATION EQUIPE ===== -->
     <section class="section">
-        <div class="content-block">
-            <h2>👥 Qui sommes-<span class="accent">nous</span> ?</h2>
-            <p>
-                FitLook est un projet porté par une équipe d'étudiants passionnés
-                par la mode, la technologie et l'entrepreneuriat. Nous croyons que
-                la technologie peut simplifier notre quotidien, y compris la façon
-                dont on s'habille chaque matin.
-            </p>
-            <p>
-                Notre équipe réunit des compétences complémentaires : développement,
-                design, marketing et stratégie business. Ensemble, nous construisons
-                l'application qui va changer la routine vestimentaire de millions
-                de personnes.
-            </p>
-        </div>
-    </section>
-
-    <!-- ===== MEMBRES ===== -->
-    <section class="section-grey">
-        <h2 class="section-title">🧑‍💻 Les <span class="accent">membres</span></h2>
-        <p class="section-subtitle">Chaque membre apporte son expertise unique au projet.</p>
-
+        <h2 class="section-title">Qui sommes-<span class="accent">nous</span> ?</h2>
+        <p class="section-subtitle">Chaque membre apporte ses compétences au projet.</p>
         <div class="cards-container">
             <div class="team-card">
-                <div class="team-avatar">AL</div>
-                <h3>Alexandre L.</h3>
+                <div class="team-photo">Photo à venir</div>
+                <h3>Prénom Nom</h3>
                 <div class="role">CEO / Chef de projet</div>
-                <p>Visionnaire du projet. Coordonne l'équipe et définit la stratégie globale de FitLook.</p>
+                <p>Coordonne l'équipe et définit la stratégie globale du projet.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">SM</div>
-                <h3>Sarah M.</h3>
-                <div class="role">CTO / Développement</div>
-                <p>Responsable technique. Conçoit l'architecture de l'application et développe les fonctionnalités.</p>
+                <div class="team-photo">Photo à venir</div>
+                <h3>Prénom Nom</h3>
+                <div class="role">CTO / Développeur</div>
+                <p>Conçoit l'architecture de l'app et développe les fonctionnalités.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">LB</div>
-                <h3>Lucas B.</h3>
+                <div class="team-photo">Photo à venir</div>
+                <h3>Prénom Nom</h3>
                 <div class="role">CMO / Marketing</div>
-                <p>Stratégie marketing et communication. Gère les réseaux sociaux et les partenariats influenceurs.</p>
+                <p>Stratégie marketing, réseaux sociaux et partenariats marques.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">ER</div>
-                <h3>Emma R.</h3>
+                <div class="team-photo">Photo à venir</div>
+                <h3>Prénom Nom</h3>
                 <div class="role">UX/UI Designer</div>
-                <p>Design de l'application. Crée une expérience utilisateur fluide, intuitive et esthétique.</p>
+                <p>Design de l'application et expérience utilisateur fluide.</p>
             </div>
         </div>
     </section>
-
-    <!-- ===== NOS VALEURS ===== -->
-    <section class="section">
-        <h2 class="section-title">💎 Nos <span class="accent">valeurs</span></h2>
-        <p class="section-subtitle">Les principes qui guident chaque décision chez FitLook.</p>
-
-        <div class="advantages-list">
-            <div class="advantage-item">
-                <div class="advantage-icon">🌱</div>
-                <div>
-                    <h3>Mode responsable</h3>
-                    <p>Nous encourageons à mieux utiliser les vêtements que l'on possède déjà, plutôt que d'acheter constamment du neuf. FitLook lutte contre le gaspillage vestimentaire.</p>
-                </div>
-            </div>
-            <div class="advantage-item">
-                <div class="advantage-icon">🤝</div>
-                <div>
-                    <h3>Transparence</h3>
-                    <p>Les partenariats et contenus sponsorisés sont toujours clairement identifiés. Nos utilisateurs méritent de savoir ce qui est une suggestion organique et ce qui est sponsorisé.</p>
-                </div>
-            </div>
-            <div class="advantage-item">
-                <div class="advantage-icon">💡</div>
-                <div>
-                    <h3>Innovation</h3>
-                    <p>Nous repoussons les limites de la technologie pour offrir l'expérience la plus personnalisée et utile possible à nos utilisateurs.</p>
-                </div>
-            </div>
-            <div class="advantage-item">
-                <div class="advantage-icon">🔒</div>
-                <div>
-                    <h3>Respect de la vie privée</h3>
-                    <p>Les données de garde-robe et les préférences de nos utilisateurs sont protégées et ne sont jamais revendues à des tiers.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
     <footer>
         <div class="footer-brand">Fit<span>Look</span></div>
         <p>Projet scolaire — Start-up fictive &copy; 2026</p>
         <div class="footer-links">
             <a href="index.html">Accueil</a>
-            <a href="concept.html">Concept</a>
-            <a href="fonctionnalites.html">Fonctionnalités</a>
-            <a href="business.html">Business Model</a>
+            <a href="apropos.html">À propos</a>
+            <a href="produits.html">Produits/Services</a>
             <a href="equipe.html">Équipe</a>
             <a href="contact.html">Contact</a>
+            <a href="nous-trouver.html">Nous trouver</a>
         </div>
     </footer>
-
+    <script src="equipe.js"></script>
 </body>
 </html>
