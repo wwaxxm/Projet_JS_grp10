@@ -36,3 +36,4 @@ document.querySelectorAll("form").forEach(function (form) {
         }
     });
 });
+

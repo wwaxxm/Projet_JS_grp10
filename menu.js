@@ -1,11 +1,9 @@
 /* ============================================================
    MENU.JS - Fonctions communes à toutes les pages
-   Ce fichier est chargé sur chaque page via <script src="menu.js">
    ============================================================ */
 
 
-/* ====== 1. HORLOGE EN TEMPS REEL ======
-   Affiche l'heure actuelle et se met à jour chaque seconde */
+/* ====== 1. HORLOGE EN TEMPS REEL ====== */
 function demarrerHorloge() {
     var horlogeEl = document.getElementById("horloge");
     if (!horlogeEl) return;
@@ -23,8 +21,7 @@ function demarrerHorloge() {
 }
 
 
-/* ====== 2. CHRONOMETRE - temps passé sur la page ======
-   Démarre au chargement, s'incrémente chaque seconde */
+/* ====== 2. CHRONOMETRE - temps passé sur la page ====== */
 var secondesSurPage = 0;
 
 function demarrerChrono() {
@@ -42,8 +39,7 @@ function demarrerChrono() {
 }
 
 
-/* ====== 3. LOGO CLIQUABLE → ACCUEIL ======
-   Un clic sur le logo redirige vers index.html */
+/* ====== 3. LOGO CLIQUABLE → ACCUEIL ====== */
 function initLogo() {
     var logo = document.querySelector(".logo");
     if (!logo) return;
@@ -54,8 +50,7 @@ function initLogo() {
 }
 
 
-/* ====== 4. LOADER CSS + NAVIGATION RETARDEE (2 secondes) ======
-   Affiche un spinner pendant 2 secondes avant de changer de page */
+/* ====== 4. LOADER CSS + NAVIGATION RETARDEE (2 secondes) ====== */
 function naviguerVers(url) {
     var overlay = document.getElementById("loader-overlay");
     if (!overlay) {
@@ -69,10 +64,7 @@ function naviguerVers(url) {
 }
 
 
-/* ====== 5. GESTION DES LIENS DE NAVIGATION ======
-   - Délai de 2s sur tous les liens
-   - Confirmation pour la page Équipe
-   - Log console des changements de couleur */
+/* ====== 5. GESTION DES LIENS DE NAVIGATION ====== */
 function initNavigation() {
     var liens = document.querySelectorAll("nav ul li a");
 
@@ -83,9 +75,9 @@ function initNavigation() {
             var url = this.getAttribute("href");
             var label = this.textContent.trim();
 
-            /* -- Changement de couleur de l'item cliqué + log console -- */
+            /* Changement de couleur + log console */
             var ancienneCouleur = window.getComputedStyle(this).backgroundColor;
-            var nouvelleCouleur = "#e94560"; // rouge FitLook
+            var nouvelleCouleur = "#e94560";
             this.style.backgroundColor = nouvelleCouleur;
             console.log(
                 "[Navigation] Lien cliqué : '" + label + "'" +
@@ -93,7 +85,7 @@ function initNavigation() {
                 " | Nouvelle couleur : " + nouvelleCouleur
             );
 
-            /* -- Confirmation pour la page Équipe -- */
+            /* Confirmation pour la page Équipe */
             if (url === "equipe.html") {
                 var confirme = confirm("Voulez-vous accéder à la page Présentation de l'Équipe ?");
                 if (confirme) {
@@ -101,13 +93,12 @@ function initNavigation() {
                     naviguerVers(url);
                 } else {
                     console.log("[Navigation] Confirmation refusée → navigation annulée.");
-                    /* remet la couleur d'origine si on annule */
                     this.style.backgroundColor = "";
                 }
                 return;
             }
 
-            /* -- Navigation normale avec délai 2s -- */
+            /* Navigation normale avec délai 2s */
             naviguerVers(url);
         });
     });
