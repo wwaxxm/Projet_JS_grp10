@@ -32,7 +32,7 @@ document.querySelectorAll("form").forEach(function (form) {
         champs.forEach(function (c) { if (!verifierSaisie(c)) ok = false; });
         if (!ok) {
             e.preventDefault();
-            console.error("🚫 [index] Soumission bloquée - erreurs de saisie.");
+            console.error("[index] Soumission bloquée - erreurs de saisie.");
         }
     });
 });
