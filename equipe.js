@@ -148,3 +148,73 @@ window.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+/* ============ 7. MODALES - fiche membre au clic ============ */
+
+/* Données complètes de chaque membre pour la modale */
+var donneesMembers = [
+    { nom: "Prénom Nom", role: "CEO / Chef de projet",   desc: "Coordonne l'équipe, définit la stratégie et la vision globale du projet FitLook." },
+    { nom: "Prénom Nom", role: "CTO / Développeur",      desc: "Conçoit l'architecture de l'application et développe toutes les fonctionnalités." },
+    { nom: "Prénom Nom", role: "CMO / Marketing",         desc: "Stratégie marketing, gestion des réseaux sociaux et partenariats avec les marques." },
+    { nom: "Prénom Nom", role: "UX/UI Designer",          desc: "Crée le design de l'application pour une expérience utilisateur fluide et esthétique." }
+];
+
+function ouvrirModale(index) {
+    var overlay = document.getElementById("modal-overlay");
+    var mNom    = document.getElementById("modal-nom");
+    var mRole   = document.getElementById("modal-role");
+    var mDesc   = document.getElementById("modal-desc");
+
+    if (!overlay) return;
+
+    /* Trouver le nom réel depuis la carte (peut avoir été modifié en mode édition) */
+    var cartes = document.querySelectorAll(".team-card");
+    var nomReel = donneesMembers[index].nom;
+    if (cartes[index]) {
+        nomReel = cartes[index].querySelector("h3").textContent;
+    }
+
+    mNom.textContent  = nomReel;
+    mRole.textContent = donneesMembers[index].role;
+    mDesc.textContent = donneesMembers[index].desc;
+    overlay.classList.add("visible");
+}
+
+function fermerModale() {
+    var overlay = document.getElementById("modal-overlay");
+    if (overlay) overlay.classList.remove("visible");
+}
+
+function initModales() {
+    /* Clic sur les cartes existantes */
+    var cartes = document.querySelectorAll(".team-card");
+    cartes.forEach(function (carte, i) {
+        carte.addEventListener("click", function (e) {
+            /* Ne pas ouvrir la modale si on clique sur le bouton supprimer ou l'input */
+            if (e.target.classList.contains("btn-supprimer") || e.target.tagName === "INPUT") return;
+            ouvrirModale(i);
+        });
+    });
+
+    /* Fermer la modale au clic sur le fond ou le bouton X */
+    var overlay = document.getElementById("modal-overlay");
+    if (overlay) {
+        overlay.addEventListener("click", function (e) {
+            if (e.target === overlay) fermerModale();
+        });
+    }
+
+    var btnClose = document.getElementById("modal-close");
+    if (btnClose) btnClose.addEventListener("click", fermerModale);
+
+    /* Fermer avec Échap */
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") fermerModale();
+    });
+}
+
+/* On relance initModales au chargement (s'ajoute à l'init déjà existante) */
+window.addEventListener("DOMContentLoaded", function () {
+    initModales();
+});
