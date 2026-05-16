@@ -128,37 +128,65 @@ function initNavigation() {
    Après validation : message console + sonnerie 5 secondes.
 */
 
-/* Variable pour la sonnerie - mettre l'URL du fichier audio plus tard */
-var sonnerieURL = "";  /* Exemple : "sonnerie.mp3" */
+/* Variable pour la sonnerie - mettre l'URL de ton fichier audio ici */
+var sonnerieURL = "son/Enregistrement 2026-05-16 232614.mp3";  /* ex: "son/sonnerie.mp3" */
 var sonnerieAudio = null;
 
+/* Liste des numeros des campus pour detecter si c'est bien un numero copie */
+var numerosCampus = [
+    "+33 (0)2 98 03 84 00",
+    "+33 (0)2 30 31 03 20",
+    "+33 (0)2 30 13 05 60",
+    "+33 (0)2 30 13 02 50",
+    "+33 (0)2 30 31 30 40"
+];
+
 function initTelephones() {
-    var telLinks = document.querySelectorAll(".tel-link");
+    /* On ecoute la copie sur TOUT le document - plus fiable que sur le span */
+    document.addEventListener("copy", function (e) {
 
-    telLinks.forEach(function (tel) {
-        /* On écoute l'événement 'copy' sur chaque numéro */
-        tel.addEventListener("copy", function (e) {
-            var numero = this.textContent.trim();
-            console.log("[Téléphone] Numéro copié : " + numero);
+        /* On recupere le texte que l'utilisateur vient de copier */
+        var texteCopie = "";
+        if (window.getSelection) {
+            texteCopie = window.getSelection().toString().trim();
+        }
 
-            /* On utilise un setTimeout pour laisser la copie se faire avant le prompt */
-            setTimeout(function () {
-                var saisi = prompt("Si vous voulez appeler ce numéro : " + numero + ", entrez le de nouveau dans le champ ci-dessous puis validez");
+        if (texteCopie === "") {
+            return;
+        }
 
-                if (saisi === null) {
-                    console.log("[Téléphone] Appel annulé.");
-                    return;
-                }
+        /* On verifie si le texte copie correspond a un de nos numeros */
+        var numeroTrouve = "";
+        for (var i = 0; i < numerosCampus.length; i++) {
+            if (texteCopie === numerosCampus[i]) {
+                numeroTrouve = numerosCampus[i];
+            }
+        }
 
-                /* On vérifie que le numéro saisi correspond */
-                if (saisi.trim() === numero) {
-                    console.log("vous appelez ce numéro : " + numero);
-                    declencherSonnerie();
-                } else {
-                    console.error("[Téléphone] Numéro incorrect. Appel annulé.");
-                }
-            }, 100);
-        });
+        /* Si c'est pas un numero de campus on ne fait rien */
+        if (numeroTrouve === "") {
+            return;
+        }
+
+        console.log("[Telephone] Numero copie : " + numeroTrouve);
+
+        /* Petit delai pour laisser la copie se terminer avant d'ouvrir le prompt */
+        setTimeout(function () {
+            var saisi = prompt("Si vous voulez appeler ce numero : " + numeroTrouve + ", entrez le de nouveau dans le champ ci-dessous puis validez");
+
+            if (saisi === null) {
+                console.log("[Telephone] Appel annule.");
+                return;
+            }
+
+            /* On verifie que le numero resaisi correspond */
+            if (saisi.trim() === numeroTrouve) {
+                console.log("vous appelez ce numero : " + numeroTrouve);
+                declencherSonnerie();
+            } else {
+                console.error("[Telephone] Numero incorrect. Appel annule.");
+            }
+        }, 200);
     });
 }
 
@@ -176,7 +204,9 @@ function declencherSonnerie() {
 
     /* Si une URL est définie, on joue la vraie sonnerie */
     sonnerieAudio = new Audio(sonnerieURL);
-    sonnerieAudio.play();
+    sonnerieAudio.play().catch(function(erreur) {
+    console.error("[Sonnerie] Erreur lecture audio : " + erreur);
+});
     console.log("[Sonnerie] Sonnerie démarrée.");
 
     /* On arrête après 5 secondes */
