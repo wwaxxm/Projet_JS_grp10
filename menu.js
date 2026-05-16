@@ -1,7 +1,44 @@
 /* ============================================================
    MENU.JS - Fonctions communes à toutes les pages
-   ============================================================ */
 
+
+
+   /*  ANTI-PLAGIAT */
+document.addEventListener("copy", function () {
+    console.warn("⚠️ ATTENTION - Règles sur le plagiat :");
+    console.warn("Le contenu de ce site est la propriété exclusive de FitLook.");
+    console.warn("Toute reproduction sans autorisation écrite est interdite.");
+    console.warn("Article L122-4 du Code de la Propriété Intellectuelle.");
+});
+
+/* ERREURS DE SAISIE */
+function verifierSaisie(champ) {
+    var valeur = champ.value.trim();
+    var nom = champ.name || champ.id || "champ inconnu";
+    if (valeur === "" && champ.hasAttribute("required")) {
+        console.error("❌ [index] Champ '" + nom + "' : obligatoire mais vide.");
+        return false;
+    }
+    if (champ.type === "email" && valeur !== "") {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valeur)) {
+            console.error("❌ [index] Champ '" + nom + "' : email invalide → " + valeur);
+            return false;
+        }
+    }
+    return true;
+}
+
+document.querySelectorAll("form").forEach(function (form) {
+    form.addEventListener("submit", function (e) {
+        var champs = this.querySelectorAll("input, textarea, select");
+        var ok = true;
+        champs.forEach(function (c) { if (!verifierSaisie(c)) ok = false; });
+        if (!ok) {
+            e.preventDefault();
+            console.error("[index] Soumission bloquée - erreurs de saisie.");
+        }
+    });
+});
 
 /* ====== 1. HORLOGE EN TEMPS REEL ====== */
 function demarrerHorloge() {
@@ -123,12 +160,12 @@ function initNavigation() {
 
 
 /* ====== 6. NUMEROS DE TELEPHONE - COPIE + APPEL ======
-   Si l'utilisateur copie un numéro de téléphone des campus,
-   un prompt s'affiche pour confirmer l'appel.
-   Après validation : message console + sonnerie 5 secondes.
+   Si l'utilisateur copie un numéro de téléphone des campus
+   un prompt s'affiche pour confirmer l'appel
+   Après validation  message console et sonnerie 5 secondes
 */
 
-/* Variable pour la sonnerie - mettre l'URL de ton fichier audio ici */
+/* Variable pour la sonnerie  mettre l'URL de ton fichier audio ici */
 var sonnerieURL = "son/Enregistrement 2026-05-16 232614.mp3";  /* ex: "son/sonnerie.mp3" */
 var sonnerieAudio = null;
 
@@ -227,3 +264,5 @@ window.addEventListener("DOMContentLoaded", function () {
     initTelephones();
     console.log("📄 menu.js chargé - page : " + document.title);
 });
+
+

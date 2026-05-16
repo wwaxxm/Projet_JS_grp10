@@ -1,12 +1,6 @@
 /* contact.js - Page Contact + Quiz */
 
-/* 1. ANTI-PLAGIAT */
-document.addEventListener("copy", function () {
-    console.warn("⚠️ ATTENTION - Règles sur le plagiat :");
-    console.warn("Le contenu de ce site est la propriété exclusive de FitLook.");
-    console.warn("Toute reproduction sans autorisation écrite est interdite.");
-    console.warn("Article L122-4 du Code de la Propriété Intellectuelle.");
-});
+
 
 /* 2. ERREURS DE SAISIE */
 function verifierSaisie(champ) {
