@@ -10,7 +10,7 @@ function clikSurEdit() {
     let leBouton = document.getElementById("btn-mode-edition"); // on recupere le bouton html par son ID
 
     if (modeEditOuvert == false) {
-        // --- DEBUT DU MODE EDITION ---
+        // DEBUT DU MODE EDITION
         // prompt affiche une petite boite de dialogue pour taper du texte
         let nomAdmin = prompt("Entrez le nom du profil administrateur svp :");
         
@@ -46,7 +46,7 @@ function clikSurEdit() {
         console.log("MODE EDITION ALLUMÉ.");
 
     } else {
-        // --- FIN DU MODE EDITION ---
+        // FIN DU MODE EDITION
         // confirm est comme prompt mais avec juste OK ou Annuler (renvoie true ou false)
         let reponse = confirm("Voulez-vous vraiment quitter le mode edition ?");
         if (reponse == false) {
@@ -88,7 +88,7 @@ function saveLesNoms() {
     });
 }
 
-// ajoute une personne a la fin
+// ajoute une personne
 function rajoutPersonne() {
     cmptNewGars = cmptNewGars + 1;
     let divContainer = document.getElementById("equipe-container");
@@ -172,98 +172,4 @@ window.addEventListener("DOMContentLoaded", function () {
             });
         }
     }
-});
-
-
-// ---------------------------------------------------------
-// PARTIE SUR LES MODALES (les trucs qui s ouvrent au clic)
-// ---------------------------------------------------------
-
-// tableau avec toutes les données (objets JSON) qu'on va afficher dans la popup
-let baseDeDonneesMembres = [
-    { nom: "Prénom Nom", role: "CEO / Chef de projet",   desc: "Coordonne l'equipe, definit la strategie et la vision globale du projet FitLook." },
-    { nom: "Prénom Nom", role: "CTO / Developpeur",      desc: "Concoit l'architecture de l'application et developpe toutes les fonctionnalites." },
-    { nom: "Prénom Nom", role: "CMO / Marketing",         desc: "Strategie marketing, gestion des reseaux sociaux et partenariats avec les marques." },
-    { nom: "Prénom Nom", role: "UX/UI Designer",          desc: "Cree le design de l'application pour une experience utilisateur fluide et esthetique." }
-];
-
-// indexDuTab correspond au numero du membre (0, 1, 2 ou 3)
-function ouvrirFenetreModale(indexDuTab) {
-    let leFondGris = document.getElementById("modal-overlay");
-    let titreM = document.getElementById("modal-nom");
-    let roleM = document.getElementById("modal-role");
-    let descM = document.getElementById("modal-desc");
-
-    if (leFondGris == null) {
-        return; // securité au cas ou la modale n'existe pas dans le html
-    }
-
-    // on essaie de trouver le nom dans la carte parce qu'il a ptet ete modifié avec le mode edition
-    let toutesCartes = document.querySelectorAll(".team-card");
-    let leVraiNom = baseDeDonneesMembres[indexDuTab].nom; // nom par defaut du tableau
-    
-    // si la carte existe bien sur la page, on prend le nom ecrit dans le h3 a la place
-    if (toutesCartes[indexDuTab] != null) {
-        leVraiNom = toutesCartes[indexDuTab].querySelector("h3").textContent;
-    }
-
-    // on met a jour les textes a l'interieur de la modale en piochant dans notre tableau
-    titreM.textContent = leVraiNom;
-    roleM.textContent = baseDeDonneesMembres[indexDuTab].role;
-    descM.textContent = baseDeDonneesMembres[indexDuTab].desc;
-    
-    leFondGris.classList.add("visible"); // affiche la popup (le css gere l'opacité et l'affichage)
-}
-
-function fermerPopup() {
-    let fondO = document.getElementById("modal-overlay");
-    if (fondO != null) {
-        fondO.classList.remove("visible"); // on retire la classe pour cacher
-    }
-}
-
-function demarrerModales() {
-    // pour le clic sur les cartes
-    let lesCards = document.querySelectorAll(".team-card");
-    // "c" c'est la carte actuelle de la boucle, "numero" c'est son index (0, 1, 2...)
-    lesCards.forEach(function (c, numero) {
-        c.addEventListener("click", function (evt) {
-            // evt.target c'est l'endroit exact ou la souris a cliqué
-            // on verifie si on n'a pas cliqué sur le bouton supprimer ou sur le champ de texte
-            // si oui, on fait un "return" pour arreter la fonction et NE PAS ouvrir la modale
-            if (evt.target.className == "btn-supprimer" || evt.target.tagName == "INPUT") {
-                return; 
-            }
-            ouvrirFenetreModale(numero); // sinon on ouvre avec le bon numero
-        });
-    });
-
-    // on ferme si on clic dans le vide (sur le fond gris)
-    let overlayBg = document.getElementById("modal-overlay");
-    if (overlayBg) {
-        overlayBg.addEventListener("click", function (event) {
-            // on s'assure qu'on a bien cliqué sur le fond et pas sur la boite blanche au milieu
-            if (event.target == overlayBg) {
-                fermerPopup();
-            }
-        });
-    }
-
-    let boutonCroix = document.getElementById("modal-close");
-    if (boutonCroix) {
-        boutonCroix.addEventListener("click", fermerPopup);
-    }
-
-    // pour fermer avec la touche echap du clavier
-    // keydown ecoute toutes les touches pressées sur le clavier entier (document)
-    document.addEventListener("keydown", function (e) {
-        if (e.key == "Escape") { // on verifie si la touche est bien la touche Echap
-            fermerPopup();
-        }
-    });
-}
-
-// on lance les modales au chargement de la page
-window.addEventListener("DOMContentLoaded", function () {
-    demarrerModales();
 });
