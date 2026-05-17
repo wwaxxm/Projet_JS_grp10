@@ -3,7 +3,7 @@
 
 
 /* ============ 2. LISTE DES PRODUITS ============ */
-var produits = [
+const produits = [
     { id: 1, nom: "T-shirt Oversize",     theme: "Hauts",       prix: 29.99,  date: "2026-03-15", icone1: "👕", icone2: "🎽", desc: "T-shirt coton bio, coupe oversize." },
     { id: 2, nom: "Jean Slim Noir",       theme: "Bas",         prix: 59.90,  date: "2026-02-20", icone1: "👖", icone2: "🩳", desc: "Jean slim taille haute, denim premium." },
     { id: 3, nom: "Veste Kaki Cargo",     theme: "Vestes",      prix: 89.00,  date: "2026-04-01", icone1: "🧥", icone2: "🥼", desc: "Veste cargo style militaire, multipoches." },
@@ -16,7 +16,7 @@ var produits = [
 
 /* ============ 3. AFFICHAGE DES PRODUITS ============ */
 function afficherProduits(liste) {
-    var grid = document.getElementById("produits-grid");
+    const grid = document.getElementById("produits-grid");
     if (!grid) return;
     grid.innerHTML = "";
 
@@ -26,7 +26,7 @@ function afficherProduits(liste) {
     }
 
     liste.forEach(function (p) {
-        var card = document.createElement("div");
+        const card = document.createElement("div");
         card.className = "produit-card";
         card.innerHTML =
             '<div class="produit-image" data-id="' + p.id + '" data-state="1">' + p.icone1 + '</div>' +
@@ -46,9 +46,9 @@ function afficherProduits(liste) {
     /* CLIC IMAGE → change image */
     document.querySelectorAll(".produit-image").forEach(function (img) {
         img.addEventListener("click", function () {
-            var id = parseInt(this.getAttribute("data-id"));
-            var state = this.getAttribute("data-state");
-            var produit = produits.find(function (p) { return p.id === id; });
+            const id = parseInt(this.getAttribute("data-id"));
+            const state = this.getAttribute("data-state");
+            const produit = produits.find(function (p) { return p.id === id; });
             if (state === "1") {
                 this.textContent = produit.icone2;
                 this.setAttribute("data-state", "2");
@@ -69,12 +69,12 @@ function afficherProduits(liste) {
 
 /* ============ 4. BANDEAU CANVAS ============ */
 function afficherBandeauAchat(nomProduit) {
-    var bandeau = document.getElementById("achat-bandeau");
-    var canvas = document.getElementById("canvas-achat");
-    var ctx = canvas.getContext("2d");
+    const bandeau = document.getElementById("achat-bandeau");
+    const canvas = document.getElementById("canvas-achat");
+    const ctx = canvas.getContext("2d");
 
-    var w = canvas.width;
-    var h = canvas.height;
+    const w = canvas.width;
+    const h = canvas.height;
 
     /* Fond bleu */
     ctx.fillStyle = "#16213e";
@@ -86,7 +86,7 @@ function afficherBandeauAchat(nomProduit) {
     ctx.strokeRect(0, 0, w, h);
 
     /* Smiley */
-    var cx = 40, cy = h / 2, r = 22;
+    const cx = 40, cy = h / 2, r = 22;
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.fillStyle = "#ffd93d";
@@ -128,13 +128,13 @@ function afficherBandeauAchat(nomProduit) {
 function appliquerFiltres(e) {
     if (e) e.preventDefault();
 
-    var fNom = document.getElementById("f-nom").value.trim().toLowerCase();
-    var fTheme = document.getElementById("f-theme").value;
-    var fPrixMin = parseFloat(document.getElementById("f-prix-min").value);
-    var fPrixMax = parseFloat(document.getElementById("f-prix-max").value);
-    var fDate = document.getElementById("f-date").value;
+    const fNom = document.getElementById("f-nom").value.trim().toLowerCase();
+    const fTheme = document.getElementById("f-theme").value;
+    const fPrixMin = parseFloat(document.getElementById("f-prix-min").value);
+    const fPrixMax = parseFloat(document.getElementById("f-prix-max").value);
+    const fDate = document.getElementById("f-date").value;
 
-    var resultats = produits.filter(function (p) {
+    const resultats = produits.filter(function (p) {
         if (fNom !== "" && p.nom.toLowerCase().indexOf(fNom) === -1) return false;
         if (fTheme !== "" && p.theme !== fTheme) return false;
         if (!isNaN(fPrixMin) && p.prix < fPrixMin) return false;
@@ -162,19 +162,19 @@ function retourHaut() {
 window.addEventListener("DOMContentLoaded", function () {
     afficherProduits(produits);
 
-    var form = document.getElementById("filtres-form");
+    const form = document.getElementById("filtres-form");
     if (form) form.addEventListener("submit", appliquerFiltres);
 
-    var btnReset = document.getElementById("btn-reset-filtres");
+    const btnReset = document.getElementById("btn-reset-filtres");
     if (btnReset) btnReset.addEventListener("click", reinitialiserFiltres);
 
-    var btnHaut = document.getElementById("btn-retour-haut");
+    const btnHaut = document.getElementById("btn-retour-haut");
     if (btnHaut) btnHaut.addEventListener("click", retourHaut);
 
     /* Boutons abonnement */
     document.querySelectorAll(".abo-btn").forEach(function (btn) {
         btn.addEventListener("click", function () {
-            var offre = this.getAttribute("data-offre");
+            const offre = this.getAttribute("data-offre");
             console.log("[Abonnement] Choisi : " + offre);
             afficherBandeauAchat("Abonnement " + offre);
         });
