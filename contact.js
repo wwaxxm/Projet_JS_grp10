@@ -7,32 +7,32 @@ function verifierSaisie(champ) { /* fonction qui prend un champ de formulaire en
 
 /* si le champs est vide renvoie false est previens l'utilisateur */
     if (valeur === "" && champ.hasAttribute("required")) { 
-        console.error("❌ [Contact] Champ '" + nom + "' : obligatoire mais vide.");
+        console.error("[Contact] Champ '" + nom + "' : obligatoire mais vide.");
         return false;
     }
     /* champ.type permet de verifier si l'email est valide*/
     if (champ.type === "email" && valeur !== "") {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valeur)) {
-            console.error("❌ [Contact] Email invalide → " + valeur);
+            console.error("[Contact] Email invalide → " + valeur);
             return false;
         }
     }
     /*   on verifie qu'il n'y a pas de 0,1,2...9 dans le champ nom */
     if (nom === "nom_complet" && valeur !== "") {
         if (/[0-9]/.test(valeur)) { /* si un chiffre est detecter  renvoie false*/
-            console.error("❌ [Contact] Champ 'nom complet' : ne doit pas contenir de chiffres → '" + valeur + "'");
+            console.error("[Contact] Champ 'nom complet' : ne doit pas contenir de chiffres → '" + valeur + "'");
             return false;
         }
-        console.log("✅ [Contact] Nom complet valide : '" + valeur + "'");
+        console.log("[Contact] Nom complet valide : '" + valeur + "'");
     }
     if (nom === "message" && valeur.length < 10) {
-        console.error("❌ [Contact] Message trop court : " + valeur.length + " caractères (min 10).");
+        console.error("[Contact] Message trop court : " + valeur.length + " caractères (min 10).");
         return false;
     }
 
     /* si le champ est un <select> avec aucune valeur la console affiche l'erreur */
     if (champ.tagName === "SELECT" && valeur === "") { 
-        console.error("❌ [Contact] Aucun sujet sélectionné.");
+        console.error("[Contact] Aucun sujet sélectionné.");
         return false;
     }
     return true;
@@ -51,7 +51,7 @@ if (formContact) {
         if (!ok) {
             console.error(" Soumission bloquée - corrigez les erreurs ci-dessus.");
         } else {
-            console.log("✅ Formulaire Contact valide - envoi en cours...");
+            console.log("Formulaire Contact valide - envoi en cours...");
         }
     });
 }
@@ -59,20 +59,20 @@ if (formContact) {
 /*  QUIZ */
 function verifierQuiz() {
     const bonnesReponses = { q1: "b", q2: "c", q3: "b", q4: "b" };
-    const score = 0;
+    let score = 0;
     console.log("--- Résultats du quiz FitLook ---");
-    for (const i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 4; i++) {
         /*  permet d'éviter de répéter 4 fois la même ligne : */
         const rep = document.querySelector('input[name="q' + i + '"]:checked');
         if (!rep) {
-            console.warn("⚠️ Question " + i + " : pas de réponse sélectionnée.");
+            console.warn(" Question " + i + " : pas de réponse sélectionnée.");
 
         // rep.value = la lettre de la réponse choisie
         } else if (rep.value === bonnesReponses["q" + i]) {
             score++;
-            console.log("✅ Question " + i + " : bonne réponse !");
+            console.log(" Question " + i + " : bonne réponse !");
         } else {
-            console.log("❌ Question " + i + " : mauvaise réponse.");
+            console.log(" Question " + i + " : mauvaise réponse.");
         }
     }
    // utilisation de CSS dans JS avec style //
