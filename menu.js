@@ -3,7 +3,7 @@
 
    /*  ANTI-PLAGIAT */ // Dylan
 document.addEventListener("copy", function () { // fonction anonyme
-    console.warn("⚠️ ATTENTION - Règles sur le plagiat :");
+    console.warn(" ATTENTION - Règles sur le plagiat :");
     console.warn("Le contenu de ce site est la propriété exclusive de FitLook.");
     console.warn("Toute reproduction sans autorisation écrite est interdite.");
 });
@@ -13,12 +13,12 @@ function verifierSaisie(champ) {
    let valeur = champ.value.trim();
    let nom = champ.name || champ.id || "champ inconnu";
     if (valeur === "" && champ.hasAttribute("required")) {
-        console.error("❌ [index] Champ '" + nom + "' : obligatoire mais vide.");
+        console.error("[index] Champ '" + nom + "' : obligatoire mais vide.");
         return false;
     }
     if (champ.type === "email" && valeur !== "") {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valeur)) {
-            console.error("❌ [index] Champ '" + nom + "' : email invalide → " + valeur);
+            console.error(" [index] Champ '" + nom + "' : email invalide → " + valeur);
             return false;
         }
     }
@@ -163,8 +163,8 @@ function initNavigation() { /* DYLAN */
 */
 
 /*letiable pour la sonnerie */
-var sonnerieURL = "son/Enregistrement 2026-05-16 232614.mp3";  /* ex: "son/sonnerie.mp3" */
-var sonnerieAudio = null;
+let sonnerieURL = "son/Enregistrement 2026-05-16 232614.mp3";  /* ex: "son/sonnerie.mp3" */
+let sonnerieAudio = null;
 
 /* Liste des numeros des campus pour detecter si c'est bien un numero copie */
 var numerosCampus = [
@@ -191,7 +191,7 @@ function initTelephones() {
 
         /* On verifie si le texte copie correspond a un de nos numeros */
        let numeroTrouve = "";
-        for (var i = 0; i < numerosCampus.length; i++) {
+        for (let i = 0; i < numerosCampus.length; i++) {
             if (texteCopie === numerosCampus[i]) {
                 numeroTrouve = numerosCampus[i];
             }
@@ -259,7 +259,7 @@ window.addEventListener("DOMContentLoaded", function () {
     initLogo();
     initNavigation();
     initTelephones();
-    console.log("📄 menu.js chargé - page : " + document.title);
+    console.log(" menu.js chargé - page : " + document.title);
 });
 
 

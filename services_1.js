@@ -15,61 +15,7 @@ let produits = [
     { id: 7, nom: "Pull en Laine", theme: "Hauts", prix: 75.00, date: "2026-01-15", img:"banks/images/pull.webp", desc: "Pull en laine mérinos, chaud et doux." },
     { id: 8, nom: "Sac à Dos Urbain", theme: "Accessoires", prix: 65.00, date: "2026-04-05", img:"banks/images/bag.webp", desc: "Sac à dos pratique pour la ville." }
 ];
-
-// affichage des produits et gestion des clics
-// function afficherProduits(liste) {
-//     let grid = document.getElementById("produits-grid");
-//     if (!grid) return;
-    
-//     grid.innerHTML = "";
-
-//     if (liste.length === 0) {
-//         grid.innerHTML = "<p class='no-result'>Aucun produit trouvé.</p>";
-//         return;
-//     }
-
-//     liste.forEach(function (p) {
-//         let card = document.createElement("div");
-//         card.className = "produit-card";
-//         card.innerHTML =
-//             '<div class="produit-image" data-id="' + p.id + '" data-state="1">' + p.icone1 + '</div>' +
-//             '<div class="produit-info">' +
-//                 '<h3>' + p.nom + '</h3>' +
-//                 '<span class="produit-theme">' + p.theme + '</span>' +
-//                 '<p>' + p.desc + '</p>' +
-//                 '<div class="produit-footer">' +
-//                     '<span class="produit-prix">' + p.prix.toFixed(2) + ' €</span>' +
-//                     '<span class="produit-date">' + p.date + '</span>' +
-//                 '</div>' +
-//                 '<button class="btn-acheter" data-nom="' + p.nom + '">Acheter</button>' +
-//             '</div>';
-        
-//         grid.appendChild(card);
-//     });
-
-//     document.querySelectorAll(".produit-image").forEach(function (img) {
-//         img.addEventListener("click", function () {
-//             let id = parseInt(this.getAttribute("data-id"));
-//             let state = this.getAttribute("data-state");
-            
-//             let produit = produits.find(function (p) { return p.id === id; });
-            
-//             if (state === "1") {
-//                 this.textContent = produit.icone2;
-//                 this.setAttribute("data-state", "2");
-//             } else {
-//                 this.textContent = produit.icone1;
-//                 this.setAttribute("data-state", "1");
-//             }
-//         });
-//     });
-
-//     document.querySelectorAll(".btn-acheter").forEach(function (btn) {
-//         btn.addEventListener("click", function () {
-//             afficherBandeauAchat(this.getAttribute("data-nom"));
-//         });
-//     });
-// }
+     
 // affichage des produits et gestion des clics
 function afficherProduits(liste) {
     let grid = document.getElementById("produits-grid");
