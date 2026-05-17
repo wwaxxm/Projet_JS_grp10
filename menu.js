@@ -225,9 +225,9 @@ function initTelephones() {
 }
 
 /* Joue la sonnerie pendant 5 secondes */
-function declencherSonnerie() {
+function declencherSonnerie() { // DYLAN /*  si le son ne se lance pas ou est vide on simule les 5S 
     if (sonnerieURL === "") {
-        console.warn("[Sonnerie] Aucun fichier audio défini. Ajoutez l'URL dans laconstiable 'sonnerieURL'.");
+        console.warn("[Sonnerie] Aucun fichier audio défini. Ajoutez l'URL pour  'sonnerieURL'.");
         /* On simule quand même les 5 secondes */
         console.log("[Sonnerie] Sonnerie active (simulation 5 secondes)...");
         setTimeout(function () {
@@ -238,21 +238,21 @@ function declencherSonnerie() {
 
     /* Si une URL est définie, on joue la vraie sonnerie */
     sonnerieAudio = new Audio(sonnerieURL);
-    sonnerieAudio.play().catch(function(erreur) {
+    sonnerieAudio.play().catch(function(erreur) { // permet de savoir ou est l'erreur en affichant ds la console 
     console.error("[Sonnerie] Erreur lecture audio : " + erreur);
 });
     console.log("[Sonnerie] Sonnerie démarrée.");
 
     /* On arrête après 5 secondes */
     setTimeout(function () {
-        sonnerieAudio.pause();
-        sonnerieAudio.currentTime = 0;
+        sonnerieAudio.pause(); // on arrete 
+        sonnerieAudio.currentTime = 0; // on reinitialise a 0:00
         console.log("[Sonnerie] Fin de la sonnerie (5 secondes écoulées).");
-    }, 5000);
+    }, 5000); // en ms
 }
 
 
-/*  INITIALISATION AU CHARGEMENT  */
+/*  INITIALISATION AU CHARGEMENT  */ // DYLAN
 window.addEventListener("DOMContentLoaded", function () {
     demarrerHorloge();
     demarrerChrono();
