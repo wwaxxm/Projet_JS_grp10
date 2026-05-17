@@ -10,8 +10,8 @@ document.addEventListener("copy", function () { // fonction anonyme
 
 /* ERREURS DE SAISIE */
 function verifierSaisie(champ) {
-   const valeur = champ.value.trim();
-   const nom = champ.name || champ.id || "champ inconnu";
+   let valeur = champ.value.trim();
+   let nom = champ.name || champ.id || "champ inconnu";
     if (valeur === "" && champ.hasAttribute("required")) {
         console.error("❌ [index] Champ '" + nom + "' : obligatoire mais vide.");
         return false;
@@ -27,8 +27,8 @@ function verifierSaisie(champ) {
 
 document.querySelectorAll("form").forEach(function (form) {
     form.addEventListener("submit", function (e) {
-       const champs = this.querySelectorAll("input, textarea, select");
-       const ok = true;
+       let champs = this.querySelectorAll("input, textarea, select");
+       let ok = true;
         champs.forEach(function (c) { if (!verifierSaisie(c)) ok = false; });
         if (!ok) {
             e.preventDefault();
@@ -39,14 +39,14 @@ document.querySelectorAll("form").forEach(function (form) {
 
 /*  1. HORLOGE EN TEMPS REEL  */
 function demarrerHorloge() {
-   const horlogeEl = document.getElementById("horloge");
+   let horlogeEl = document.getElementById("horloge");
     if (!horlogeEl) return;
 
     function mettreAJour() {
-       const maintenant = new Date();
-       const h = String(maintenant.getHours()).padStart(2, "0");
-       const m = String(maintenant.getMinutes()).padStart(2, "0");
-       const s = String(maintenant.getSeconds()).padStart(2, "0");
+       let maintenant = new Date();
+       let h = String(maintenant.getHours()).padStart(2, "0");
+       let m = String(maintenant.getMinutes()).padStart(2, "0");
+       let s = String(maintenant.getSeconds()).padStart(2, "0");
         horlogeEl.textContent = h + ":" + m + ":" + s;
     }
 
@@ -59,15 +59,15 @@ function demarrerHorloge() {
 var secondesSurPage = 0;
 
 function demarrerChrono() {
-   const chronoEl = document.getElementById("chrono");
+   let chronoEl = document.getElementById("chrono");
     if (!chronoEl) return;
 
     setInterval(function () {
         secondesSurPage++;
-       const min = Math.floor(secondesSurPage / 60);
-       const sec = secondesSurPage % 60;
-       const affMin = String(min).padStart(2, "0");
-       const affSec = String(sec).padStart(2, "0");
+       let min = Math.floor(secondesSurPage / 60);
+       let sec = secondesSurPage % 60;
+       let affMin = String(min).padStart(2, "0");
+       let affSec = String(sec).padStart(2, "0");
         chronoEl.textContent = "Sur la page : " + affMin + ":" + affSec;
     }, 1000);
 }
@@ -75,7 +75,7 @@ function demarrerChrono() {
 
 /*  3. LOGO CLIQUABLE → ACCUEIL  */
 function initLogo() {
-   const logo = document.querySelector(".logo");
+   let logo = document.querySelector(".logo");
     if (!logo) return;
 
     logo.addEventListener("click", function () {
@@ -86,7 +86,7 @@ function initLogo() {
 
 /*  4. LOADER CSS + NAVIGATION RETARDEE (2 secondes)  */
 function naviguerVers(url) { // DYLAN
-   const overlay = document.getElementById("loader-overlay");
+   let overlay = document.getElementById("loader-overlay");
     if (!overlay) {
         window.location.href = url; // si loader marche pas on va direct sur la page concerner
         return; 
@@ -100,18 +100,18 @@ function naviguerVers(url) { // DYLAN
 
 /*  5. GESTION DES LIENS DE NAVIGATION  */
 function initNavigation() { /* DYLAN */
-   const liens = document.querySelectorAll("nav ul li a");
+   let liens = document.querySelectorAll("nav ul li a");
 
     liens.forEach(function (lien) {
         lien.addEventListener("click", function (e) {
             e.preventDefault();
 
-           const url = this.getAttribute("href");
-           const label = this.textContent.trim();
+           let url = this.getAttribute("href");
+           let label = this.textContent.trim();
 
             /* Changement de couleur + log console  si lien cliquer */
-           const ancienneCouleur = window.getComputedStyle(this).backgroundColor; /* je recupere tout les styles css et avec backgroundColor je prends uniquement la couleur du fond ( sert a trié ) */
-           const nouvelleCouleur = "#e94560";
+           let ancienneCouleur = window.getComputedStyle(this).backgroundColor; /* je recupere tout les styles css et avec backgroundColor je prends uniquement la couleur du fond ( sert a trié ) */
+           let nouvelleCouleur = "#e94560";
             this.style.backgroundColor = nouvelleCouleur; // je change donc la couleur si liens cliquer 
             console.log(
                 "[Navigation] Lien cliqué : '" + label + "'" +
@@ -121,7 +121,7 @@ function initNavigation() { /* DYLAN */
 
             /* Confirmation pour la page Équipe */
             if (url === "equipe.html") { // on confirme qu'on veut bien si rendre 
-               const confirme = confirm("Voulez-vous accéder à la page Présentation de l'Équipe ?");
+               let confirme = confirm("Voulez-vous accéder à la page Présentation de l'Équipe ?");
                 if (confirme) {
                     console.log("[Navigation] Confirmation acceptée → navigation vers equipe.html");
                     naviguerVers(url);
@@ -138,13 +138,13 @@ function initNavigation() { /* DYLAN */
     });
 
     /* Même logique pour les liens du footer */
-   const liensFooter = document.querySelectorAll(".footer-links a");
+   let liensFooter = document.querySelectorAll(".footer-links a");
     liensFooter.forEach(function (lien) {
         lien.addEventListener("click", function (e) {
             e.preventDefault(); /* preventDefault() empeche le navigateur de faire son comportement automatique pour me passer les commandes ( du mode auto au mode manuel )*/
-           const url = this.getAttribute("href");
+           let url = this.getAttribute("href");
             if (url === "equipe.html") {
-               const confirme = confirm("Voulez-vous accéder à la page Présentation de l'Équipe ?");
+               let confirme = confirm("Voulez-vous accéder à la page Présentation de l'Équipe ?");
                 if (!confirme) {
                     console.log("[Footer] Navigation vers equipe.html annulée.");
                     return;
@@ -162,7 +162,7 @@ function initNavigation() { /* DYLAN */
    Après validation  message console et sonnerie 5 secondes
 */
 
-/*constiable pour la sonnerie */
+/*letiable pour la sonnerie */
 var sonnerieURL = "son/Enregistrement 2026-05-16 232614.mp3";  /* ex: "son/sonnerie.mp3" */
 var sonnerieAudio = null;
 
@@ -180,7 +180,7 @@ function initTelephones() {
     document.addEventListener("copy", function (e) {
 
         /* On recupere le texte que l'utilisateur vient de copier */
-       const texteCopie = "";
+       let texteCopie = "";
         if (window.getSelection) {
             texteCopie = window.getSelection().toString().trim();
         }
@@ -190,7 +190,7 @@ function initTelephones() {
         }
 
         /* On verifie si le texte copie correspond a un de nos numeros */
-       const numeroTrouve = "";
+       let numeroTrouve = "";
         for (var i = 0; i < numerosCampus.length; i++) {
             if (texteCopie === numerosCampus[i]) {
                 numeroTrouve = numerosCampus[i];
@@ -206,7 +206,7 @@ function initTelephones() {
 
         /* Petit delai pour laisser la copie se terminer avant d'ouvrir le prompt */
         setTimeout(function () {
-           const saisi = prompt("Si vous voulez appeler ce numero : " + numeroTrouve + ", entrez le de nouveau dans le champ ci-dessous puis validez");
+           let saisi = prompt("Si vous voulez appeler ce numero : " + numeroTrouve + ", entrez le de nouveau dans le champ ci-dessous puis validez");
 
             if (saisi === null) {
                 console.log("[Telephone] Appel annule.");
