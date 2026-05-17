@@ -85,7 +85,7 @@ function initLogo() {
 
 
 /*  4. LOADER CSS + NAVIGATION RETARDEE (2 secondes)  */
-function naviguerVers(url) {
+function naviguerVers(url) { // DYLAN
    const overlay = document.getElementById("loader-overlay");
     if (!overlay) {
         window.location.href = url;
@@ -99,7 +99,7 @@ function naviguerVers(url) {
 
 
 /*  5. GESTION DES LIENS DE NAVIGATION  */
-function initNavigation() {
+function initNavigation() { /* DYLAN */
    const liens = document.querySelectorAll("nav ul li a");
 
     liens.forEach(function (lien) {
@@ -141,7 +141,7 @@ function initNavigation() {
    const liensFooter = document.querySelectorAll(".footer-links a");
     liensFooter.forEach(function (lien) {
         lien.addEventListener("click", function (e) {
-            e.preventDefault();
+            e.preventDefault(); /* preventDefault() empeche le navigateur de faire son comportement automatique pour me passer les commandes ( du mode auto au mode manuel )*/
            const url = this.getAttribute("href");
             if (url === "equipe.html") {
                const confirme = confirm("Voulez-vous accéder à la page Présentation de l'Équipe ?");
