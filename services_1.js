@@ -1,41 +1,94 @@
-/* services.js - Page Services */
-
-/* ============ 1. ANTI-PLAGIAT ============ */
+// antiplagiat
 document.addEventListener("copy", function () {
-    console.warn("⚠️ ATTENTION - Règles sur le plagiat :");
-    console.warn("Le contenu de ce site est la propriété exclusive de FitLook.");
-    console.warn("Toute reproduction sans autorisation écrite est interdite.");
-    console.warn("Article L122-4 du Code de la Propriété Intellectuelle.");
+    alert("Hé, la copie est interdite sur FitLook !");
+    console.log("Tentative de copie détectée.");
 });
 
-/* ============ 2. LISTE DES PRODUITS ============ */
-var produits = [
-    { id: 1, nom: "T-shirt Oversize",     theme: "Hauts",       prix: 29.99,  date: "2026-03-15", icone1: "👕", icone2: "🎽", desc: "T-shirt coton bio, coupe oversize." },
-    { id: 2, nom: "Jean Slim Noir",       theme: "Bas",         prix: 59.90,  date: "2026-02-20", icone1: "👖", icone2: "🩳", desc: "Jean slim taille haute, denim premium." },
-    { id: 3, nom: "Veste Kaki Cargo",     theme: "Vestes",      prix: 89.00,  date: "2026-04-01", icone1: "🧥", icone2: "🥼", desc: "Veste cargo style militaire, multipoches." },
-    { id: 4, nom: "Sneakers Blanches",    theme: "Chaussures",  prix: 119.00, date: "2026-03-28", icone1: "👟", icone2: "🥾", desc: "Sneakers cuir blanc, semelle confort." },
-    { id: 5, nom: "Robe d'été Fleurie",   theme: "Robes",       prix: 49.50,  date: "2026-04-10", icone1: "👗", icone2: "🥻", desc: "Robe légère imprimé floral, idéale été." },
-    { id: 6, nom: "Casquette Logo",       theme: "Accessoires", prix: 19.90,  date: "2026-03-05", icone1: "🧢", icone2: "👒", desc: "Casquette ajustable brodée FitLook." },
-    { id: 7, nom: "Pull en Laine",        theme: "Hauts",       prix: 75.00,  date: "2026-01-15", icone1: "🧶", icone2: "🧣", desc: "Pull en laine mérinos, chaud et doux." },
-    { id: 8, nom: "Sac à Dos Urbain",     theme: "Accessoires", prix: 65.00,  date: "2026-04-05", icone1: "🎒", icone2: "👜", desc: "Sac à dos pratique pour la ville." }
+// products list
+let produits = [
+    { id: 1, nom: "T-shirt Oversize", theme: "Hauts", prix: 29.99, date: "2026-03-15", img:"banks/images/tshirt.webp", desc: "longsleeve, coupe boxy" },
+    { id: 2, nom: "Jean Slim Noir", theme: "Bas", prix: 59.90, date: "2026-02-20", img: "banks/images/jean.webp", desc: "Jean baggy, denim premium." },
+    { id: 3, nom: "Veste Kaki Cargo", theme: "Vestes", prix: 89.00, date: "2026-04-01", img:"banks/images/veste.webp", desc: "Veste cargo style militaire, multipoches." },
+    { id: 4, nom: "Sneakers Blanches", theme: "Chaussures", prix: 119.00, date: "2026-03-28", img:"banks/images/sneaker.webp", desc: "Sneakers cuir blanc, semelle confort." },
+    { id: 5, nom: "Robe d'été Fleurie", theme: "Robes", prix: 49.50, date: "2026-04-10", img:"banks/images/robe.webp", desc: "Robe légère imprimé floral, idéale été." },
+    { id: 6, nom: "Casquette Logo", theme: "Accessoires", prix: 19.90, date: "2026-03-05", img:"banks/images/cap.webp", desc: "Casquette ajustable brodée FitLook." },
+    { id: 7, nom: "Pull en Laine", theme: "Hauts", prix: 75.00, date: "2026-01-15", img:"banks/images/pull.webp", desc: "Pull en laine mérinos, chaud et doux." },
+    { id: 8, nom: "Sac à Dos Urbain", theme: "Accessoires", prix: 65.00, date: "2026-04-05", img:"banks/images/bag.webp", desc: "Sac à dos pratique pour la ville." }
 ];
 
-/* ============ 3. AFFICHAGE DES PRODUITS ============ */
+// affichage des produits et gestion des clics
+// function afficherProduits(liste) {
+//     let grid = document.getElementById("produits-grid");
+//     if (!grid) return;
+    
+//     grid.innerHTML = "";
+
+//     if (liste.length === 0) {
+//         grid.innerHTML = "<p class='no-result'>Aucun produit trouvé.</p>";
+//         return;
+//     }
+
+//     liste.forEach(function (p) {
+//         let card = document.createElement("div");
+//         card.className = "produit-card";
+//         card.innerHTML =
+//             '<div class="produit-image" data-id="' + p.id + '" data-state="1">' + p.icone1 + '</div>' +
+//             '<div class="produit-info">' +
+//                 '<h3>' + p.nom + '</h3>' +
+//                 '<span class="produit-theme">' + p.theme + '</span>' +
+//                 '<p>' + p.desc + '</p>' +
+//                 '<div class="produit-footer">' +
+//                     '<span class="produit-prix">' + p.prix.toFixed(2) + ' €</span>' +
+//                     '<span class="produit-date">' + p.date + '</span>' +
+//                 '</div>' +
+//                 '<button class="btn-acheter" data-nom="' + p.nom + '">Acheter</button>' +
+//             '</div>';
+        
+//         grid.appendChild(card);
+//     });
+
+//     document.querySelectorAll(".produit-image").forEach(function (img) {
+//         img.addEventListener("click", function () {
+//             let id = parseInt(this.getAttribute("data-id"));
+//             let state = this.getAttribute("data-state");
+            
+//             let produit = produits.find(function (p) { return p.id === id; });
+            
+//             if (state === "1") {
+//                 this.textContent = produit.icone2;
+//                 this.setAttribute("data-state", "2");
+//             } else {
+//                 this.textContent = produit.icone1;
+//                 this.setAttribute("data-state", "1");
+//             }
+//         });
+//     });
+
+//     document.querySelectorAll(".btn-acheter").forEach(function (btn) {
+//         btn.addEventListener("click", function () {
+//             afficherBandeauAchat(this.getAttribute("data-nom"));
+//         });
+//     });
+// }
+// affichage des produits et gestion des clics
 function afficherProduits(liste) {
-    var grid = document.getElementById("produits-grid");
+    let grid = document.getElementById("produits-grid");
     if (!grid) return;
+    
     grid.innerHTML = "";
 
     if (liste.length === 0) {
-        grid.innerHTML = "<p class='no-result'>Aucun produit ne correspond à vos critères.</p>";
+        grid.innerHTML = "<p class='no-result'>Aucun produit trouvé.</p>";
         return;
     }
 
     liste.forEach(function (p) {
-        var card = document.createElement("div");
+        let card = document.createElement("div");
         card.className = "produit-card";
         card.innerHTML =
-            '<div class="produit-image" data-id="' + p.id + '" data-state="1">' + p.icone1 + '</div>' +
+            '<div class="produit-image">' +
+                '<img src="' + p.img + '" alt="' + p.nom + '">' +
+            '</div>' +
             '<div class="produit-info">' +
                 '<h3>' + p.nom + '</h3>' +
                 '<span class="produit-theme">' + p.theme + '</span>' +
@@ -46,53 +99,33 @@ function afficherProduits(liste) {
                 '</div>' +
                 '<button class="btn-acheter" data-nom="' + p.nom + '">Acheter</button>' +
             '</div>';
+        
         grid.appendChild(card);
     });
 
-    /* CLIC IMAGE → change image */
-    document.querySelectorAll(".produit-image").forEach(function (img) {
-        img.addEventListener("click", function () {
-            var id = parseInt(this.getAttribute("data-id"));
-            var state = this.getAttribute("data-state");
-            var produit = produits.find(function (p) { return p.id === id; });
-            if (state === "1") {
-                this.textContent = produit.icone2;
-                this.setAttribute("data-state", "2");
-            } else {
-                this.textContent = produit.icone1;
-                this.setAttribute("data-state", "1");
-            }
-        });
-    });
-
-    /* CLIC ACHETER → bandeau canvas */
     document.querySelectorAll(".btn-acheter").forEach(function (btn) {
         btn.addEventListener("click", function () {
             afficherBandeauAchat(this.getAttribute("data-nom"));
         });
     });
 }
-
-/* ============ 4. BANDEAU CANVAS ============ */
+// bandeau d'achat
 function afficherBandeauAchat(nomProduit) {
-    var bandeau = document.getElementById("achat-bandeau");
-    var canvas = document.getElementById("canvas-achat");
-    var ctx = canvas.getContext("2d");
+    let bandeau = document.getElementById("achat-bandeau");
+    let canvas = document.getElementById("canvas-achat");
+    let ctx = canvas.getContext("2d");
 
-    var w = canvas.width;
-    var h = canvas.height;
+    let w = canvas.width;
+    let h = canvas.height;
 
-    /* Fond bleu */
     ctx.fillStyle = "#16213e";
     ctx.fillRect(0, 0, w, h);
 
-    /* Bordure */
     ctx.strokeStyle = "#e94560";
     ctx.lineWidth = 3;
     ctx.strokeRect(0, 0, w, h);
 
-    /* Smiley */
-    var cx = 40, cy = h / 2, r = 22;
+    let cx = 40, cy = h / 2, r = 22;
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.fillStyle = "#ffd93d";
@@ -100,20 +133,19 @@ function afficherBandeauAchat(nomProduit) {
     ctx.strokeStyle = "#333";
     ctx.lineWidth = 2;
     ctx.stroke();
-    /* Yeux */
+    
     ctx.fillStyle = "#333";
     ctx.beginPath();
     ctx.arc(cx - 7, cy - 5, 3, 0, Math.PI * 2);
     ctx.arc(cx + 7, cy - 5, 3, 0, Math.PI * 2);
     ctx.fill();
-    /* Sourire */
+    
     ctx.beginPath();
     ctx.arc(cx, cy + 2, 10, 0, Math.PI);
     ctx.strokeStyle = "#333";
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    /* Texte */
     ctx.fillStyle = "white";
     ctx.font = "bold 14px Segoe UI";
     ctx.textBaseline = "middle";
@@ -123,24 +155,24 @@ function afficherBandeauAchat(nomProduit) {
     ctx.fillText(nomProduit, 80, cy + 12);
 
     bandeau.classList.add("visible");
-    console.log("[Achat] Produit acheté : " + nomProduit);
+    console.log("Produit acheté : " + nomProduit);
 
     setTimeout(function () {
         bandeau.classList.remove("visible");
     }, 3000);
 }
 
-/* ============ 5. FILTRES ============ */
+// filter
 function appliquerFiltres(e) {
     if (e) e.preventDefault();
 
-    var fNom = document.getElementById("f-nom").value.trim().toLowerCase();
-    var fTheme = document.getElementById("f-theme").value;
-    var fPrixMin = parseFloat(document.getElementById("f-prix-min").value);
-    var fPrixMax = parseFloat(document.getElementById("f-prix-max").value);
-    var fDate = document.getElementById("f-date").value;
+    let fNom = document.getElementById("f-nom").value.trim().toLowerCase();
+    let fTheme = document.getElementById("f-theme").value;
+    let fPrixMin = parseFloat(document.getElementById("f-prix-min").value);
+    let fPrixMax = parseFloat(document.getElementById("f-prix-max").value);
+    let fDate = document.getElementById("f-date").value;
 
-    var resultats = produits.filter(function (p) {
+    let resultats = produits.filter(function (p) {
         if (fNom !== "" && p.nom.toLowerCase().indexOf(fNom) === -1) return false;
         if (fTheme !== "" && p.theme !== fTheme) return false;
         if (!isNaN(fPrixMin) && p.prix < fPrixMin) return false;
@@ -149,40 +181,44 @@ function appliquerFiltres(e) {
         return true;
     });
 
-    console.log("[Filtres] " + resultats.length + " produit(s) trouvé(s).");
+    console.log(resultats.length + " produit(s) trouvé(s) avec les filtres.");
     afficherProduits(resultats);
 }
 
 function reinitialiserFiltres() {
     document.getElementById("filtres-form").reset();
     afficherProduits(produits);
-    console.log("[Filtres] Réinitialisés.");
+    console.log("Filtres remis à zéro.");
 }
 
-/* ============ 6. RETOUR HAUT ============ */
+// btn comeback
 function retourHaut() {
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-/* ============ 7. INITIALISATION ============ */
+// init de la page et des events
 window.addEventListener("DOMContentLoaded", function () {
     afficherProduits(produits);
 
-    var form = document.getElementById("filtres-form");
+    let form = document.getElementById("filtres-form");
     if (form) form.addEventListener("submit", appliquerFiltres);
 
-    var btnReset = document.getElementById("btn-reset-filtres");
+    let btnReset = document.getElementById("btn-reset-filtres");
     if (btnReset) btnReset.addEventListener("click", reinitialiserFiltres);
 
-    var btnHaut = document.getElementById("btn-retour-haut");
+    let btnHaut = document.getElementById("btn-retour-haut");
     if (btnHaut) btnHaut.addEventListener("click", retourHaut);
 
-    /* Boutons abonnement */
     document.querySelectorAll(".abo-btn").forEach(function (btn) {
         btn.addEventListener("click", function () {
-            var offre = this.getAttribute("data-offre");
-            console.log("[Abonnement] Choisi : " + offre);
+            let offre = this.getAttribute("data-offre");
+            console.log("Abonnement choisi : " + offre);
             afficherBandeauAchat("Abonnement " + offre);
         });
     });
 });
+
+
+
+
+
