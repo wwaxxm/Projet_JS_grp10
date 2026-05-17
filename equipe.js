@@ -1,11 +1,10 @@
 /* equipe.js - Page Équipe avec mode édition */
 
-
-/* ============ 2. VARIABLES DU MODE EDITION ============ */
+/*   VARIABLES DU MODE EDITION  */
 var modeEdition = false;
 var compteurNouveauxMembres = 0;
 
-/* ============ 3. BOUTON MODE EDITION ============ */
+/*  BOUTON MODE EDITION  */
 function gererClicEdition() {
     var btn = document.getElementById("btn-mode-edition");
 
@@ -59,7 +58,7 @@ function gererClicEdition() {
     }
 }
 
-/* ============ 4. SAUVEGARDER LES NOMS ============ */
+/*   SAUVEGARDER LES NOMS  */
 function sauvegarderNoms() {
     var cartes = document.querySelectorAll(".team-card");
     cartes.forEach(function (carte) {
@@ -75,7 +74,7 @@ function sauvegarderNoms() {
     });
 }
 
-/* ============ 5. AJOUTER UN MEMBRE ============ */
+/*   AJOUTER UN MEMBRE  */
 function ajouterMembre() {
     compteurNouveauxMembres++;
     var container = document.getElementById("equipe-container");
@@ -111,7 +110,7 @@ function ajouterMembre() {
     console.log("[Édition] Nouveau membre ajouté.");
 }
 
-/* ============ 6. INITIALISATION ============ */
+/*   INITIALISATION  */
 window.addEventListener("DOMContentLoaded", function () {
     var btn = document.getElementById("btn-mode-edition");
     if (btn) btn.addEventListener("click", gererClicEdition);
@@ -143,7 +142,7 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* ============ 7. MODALES - fiche membre au clic ============ */
+/*   MODALES - fiche membre au clic  */
 
 /* Données complètes de chaque membre pour la modale */
 var donneesMembers = [
