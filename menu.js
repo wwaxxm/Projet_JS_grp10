@@ -38,7 +38,7 @@ document.querySelectorAll("form").forEach(function (form) {
 });
 
 /*  1. HORLOGE EN TEMPS REEL  */
-function demarrerHorloge() {
+function demarrerHorloge() { //sidick
    let horlogeEl = document.getElementById("horloge");
     if (!horlogeEl) return;
 
@@ -56,9 +56,9 @@ function demarrerHorloge() {
 
 
 /*  2. CHRONOMETRE - temps passé sur la page  */
-var secondesSurPage = 0;
+let secondesSurPage = 0;
 
-function demarrerChrono() {
+function demarrerChrono() {//sidick
    let chronoEl = document.getElementById("chrono");
     if (!chronoEl) return;
 
@@ -74,7 +74,7 @@ function demarrerChrono() {
 
 
 /*  3. LOGO CLIQUABLE → ACCUEIL  */
-function initLogo() {
+function initLogo() {//sidick
    let logo = document.querySelector(".logo");
     if (!logo) return;
 
@@ -167,7 +167,7 @@ let sonnerieURL = "son/Enregistrement 2026-05-16 232614.mp3";  /* ex: "son/sonne
 let sonnerieAudio = null;
 
 /* Liste des numeros des campus pour detecter si c'est bien un numero copie */
-var numerosCampus = [
+let numerosCampus = [
     "+33 (0)2 98 03 84 00",
     "+33 (0)2 30 31 03 20",
     "+33 (0)2 30 13 05 60",
