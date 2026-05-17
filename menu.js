@@ -88,8 +88,8 @@ function initLogo() {
 function naviguerVers(url) { // DYLAN
    const overlay = document.getElementById("loader-overlay");
     if (!overlay) {
-        window.location.href = url;
-        return;
+        window.location.href = url; // si loader marche pas on va direct sur la page concerner
+        return; 
     }
     overlay.classList.add("visible");
     setTimeout(function () {
