@@ -42,7 +42,7 @@ function verifierSaisie(champ) { /* fonction qui prend un champ de formulaire en
 const formContact = document.getElementById ("form-contact");
 if (formContact) {
     formContact.addEventListener("submit", function (e) {
-        e.preventDefault();  // empêche l'envoi réel du formulaire
+       // empêche l'envoi réel du formulaire
         const champs = this.querySelectorAll("input, textarea, select"); // this est le mot clé qui désigne l'élément sur lequel l'événement s'est produit 
         const ok = true;
         console.log(" Vérification formulaire Contact ");
