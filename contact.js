@@ -2,7 +2,7 @@
 
 /* ERREURS DE SAISIE */
 function verifierSaisie(champ) { /* fonction qui prend un champ de formulaire en paramètre et vérifie que ce que l'utilisateur a écrit est correct.*/
-    const valeur = champ.value.trim(); // enleve espace ne debut et en fin du texte 
+   
     const nom = champ.name || champ.id || "champ inconnu";
 
 /* si le champs est vide renvoie false est previens l'utilisateur */
